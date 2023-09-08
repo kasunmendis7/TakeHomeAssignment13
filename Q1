@@ -41,23 +41,24 @@ int main(){
 }
 
 void selectionSortStudents(struct Student arr[], int n){
-	int i,j,maxIndex;
+	int i, j, maxIndex;
 	struct Student temp;
-	for(i=0;i<n;i++){
-		maxIndex=i;
-		for(j=i+1;j<n;j++){
-			if(arr[j].totalMarks==arr[j].totalMarks){
-				if(arr[j].id<arr[maxIndex].id){
-					maxIndex=j;
+	for(i = 0; i < n - 1; i++){
+		maxIndex = i;
+		for(j = i + 1; j < n; j++){
+			if(arr[j].totalMarks > arr[maxIndex].totalMarks){
+				maxIndex = j;
 			}
-			if(arr[j].totalMarks>arr[maxIndex].totalMarks){
-				maxIndex=j;
-			}
-			temp=arr[i];
-			arr[i]=arr[maxIndex];
-			arr[maxIndex]=temp;
+			else if (arr[j].totalMarks == arr[maxIndex].totalMarks) {
+				// If total marks are the same, compare by student ID
+				if (arr[j].id < arr[maxIndex].id) {
+					maxIndex = j;
+				}
 			}
 		}
+		temp = arr[i];
+		arr[i] = arr[maxIndex];
+		arr[maxIndex] = temp;
 	}
 }
 
